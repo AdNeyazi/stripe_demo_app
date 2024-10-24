@@ -1,0 +1,32 @@
+<h1>Payment History</h1>
+
+<%= form_tag payments_history_path, method: :get do %>
+  <%= label_tag :email, "Enter your email to view payment history" %>
+  <%= text_field_tag :email, params[:email] %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<% if @payments.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Amount</th>
+        <th>Stripe Charge ID</th>
+        <th>Status</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @payments.each do |payment| %>
+        <tr>
+          <td><%= number_to_currency(payment.amount / 100.0) %></td>
+          <td><%= payment.stripe_charge_id %></td>
+          <td><%= payment.status.capitalize %></td>
+          <td><%= payment.created_at.strftime("%b %d, %Y") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% elsif params[:email].present? %>
+  <p>No payments found for this email.</p>
+<% end %>

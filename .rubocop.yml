@@ -1,0 +1,16 @@
+# .rubocop.yml
+AllCops:
+  TargetRubyVersion: 3.0  # Specify your Ruby version
+  NewCops: enable          # Enable new cops by default
+
+Metrics/MethodLength:
+  Max: 10                  # Set max method length
+
+Metrics/CyclomaticComplexity:
+  Max: 7                   # Set max cyclomatic complexity
+
+Metrics/BlockLength:
+  Max: 25                  # Set max block length (adjust as necessary)
+
+Layout/LineLength:
+  Max: 120                 # Set max line length

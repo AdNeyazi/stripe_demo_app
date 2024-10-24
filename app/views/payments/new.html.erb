@@ -1,0 +1,17 @@
+<h1>Make a Payment</h1>
+
+<%= form_tag payments_path do %>
+  <!-- Add a hidden field for amount (e.g., $50 becomes 5000 cents) -->
+  <%= hidden_field_tag :amount, 50 %>  <!-- This will be converted to 50 USD (5000 cents) -->
+  
+  <script
+    src="https://checkout.stripe.com/checkout.js"
+    class="stripe-button"
+    data-key="<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>"
+    data-amount="5000"  <!-- Set the amount here in cents (5000 cents = $50) 
+    data-name="Demo Payment"
+    data-description="Test payment"
+    data-currency="usd"
+    data-locale="auto">
+  </script>
+<% end %>
