@@ -1,0 +1,18 @@
+# render.yaml
+services:
+  - type: web
+    name: demo-stripe-app
+    env: development
+    plan: free # or use another plan if needed (starter, standard, etc.)
+    buildCommand: bundle install
+    startCommand: bundle exec rails server -p $PORT -e development
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase: myapp-db # This links to the database defined below
+      - key: RAILS_ENV
+        value: development
+
+databases:
+  - name: myapp-db
+    plan: free # Choose your preferred plan here
+    postgresVersion: 15 # Adjust based on your version preference
