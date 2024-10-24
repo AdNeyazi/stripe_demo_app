@@ -8,11 +8,12 @@ services:
     startCommand: bundle exec rails server -p $PORT -e development
     envVars:
       - key: DATABASE_URL
-        fromDatabase: myapp-db # This links to the database defined below
+        fromDatabase:   database: stripe_app_development
+
       - key: RAILS_ENV
         value: development
 
 databases:
   - name: myapp-db
     plan: free # Choose your preferred plan here
-    postgresVersion: 15 # Adjust based on your version preference
+    # postgresVersion: 15 # Adjust based on your version preference
